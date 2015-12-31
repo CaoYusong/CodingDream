@@ -1,14 +1,16 @@
 package cn.com.cys.login.dao;
 
 import cn.com.cys.schema.CysUser;
-public interface CysUserDao {
-    int deleteByPrimaryKey(Integer usercode);
+import java.math.BigDecimal;
+
+public interface CysUserMapper {
+    int deleteByPrimaryKey(BigDecimal id);
 
     int insert(CysUser record);
 
     int insertSelective(CysUser record);
 
-    CysUser selectByPrimaryKey(Integer usercode);
+    CysUser selectByPrimaryKey(BigDecimal id);
 
     int updateByPrimaryKeySelective(CysUser record);
 

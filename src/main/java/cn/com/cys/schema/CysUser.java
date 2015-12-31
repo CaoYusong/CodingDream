@@ -1,26 +1,47 @@
 package cn.com.cys.schema;
 
-public class CysUser {
-    private Integer usercode;
+import java.math.BigDecimal;
+import java.util.Date;
 
-    private String username;
+public class CysUser {
+    private BigDecimal id;
+
+    private String userCode;
+
+    private String userName;
 
     private String password;
 
-    public Integer getUsercode() {
-        return usercode;
+    private Date passwdexpiredate;
+
+    private Date passwdsetdate;
+
+    private Date insertTimeForHis;
+
+    private Date operateTimeForHis;
+
+    public BigDecimal getId() {
+        return id;
     }
 
-    public void setUsercode(Integer usercode) {
-        this.usercode = usercode;
+    public void setId(BigDecimal id) {
+        this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserCode(String userCode) {
+        this.userCode = userCode == null ? null : userCode.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
@@ -29,5 +50,37 @@ public class CysUser {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public Date getPasswdexpiredate() {
+        return passwdexpiredate;
+    }
+
+    public void setPasswdexpiredate(Date passwdexpiredate) {
+        this.passwdexpiredate = passwdexpiredate;
+    }
+
+    public Date getPasswdsetdate() {
+        return passwdsetdate;
+    }
+
+    public void setPasswdsetdate(Date passwdsetdate) {
+        this.passwdsetdate = passwdsetdate;
+    }
+
+    public Date getInsertTimeForHis() {
+        return insertTimeForHis;
+    }
+
+    public void setInsertTimeForHis(Date insertTimeForHis) {
+        this.insertTimeForHis = insertTimeForHis;
+    }
+
+    public Date getOperateTimeForHis() {
+        return operateTimeForHis;
+    }
+
+    public void setOperateTimeForHis(Date operateTimeForHis) {
+        this.operateTimeForHis = operateTimeForHis;
     }
 }

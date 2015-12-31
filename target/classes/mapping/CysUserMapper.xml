@@ -1,71 +1,131 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.com.cys.login.dao.CysUserDao" >
+<mapper namespace="cn.com.cys.login.service.facade.CysUserMapper" >
   <resultMap id="BaseResultMap" type="cn.com.cys.schema.CysUser" >
-    <id column="usercode" property="usercode" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="passwdExpireDate" property="passwdexpiredate" jdbcType="DATE" />
+    <result column="passwdSetDate" property="passwdsetdate" jdbcType="DATE" />
+    <result column="Insert_Time_For_His" property="insertTimeForHis" jdbcType="TIMESTAMP" />
+    <result column="Operate_Time_For_His" property="operateTimeForHis" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    usercode, username, password
+    id, user_code, user_name, password, passwdExpireDate, passwdSetDate, Insert_Time_For_His, 
+    Operate_Time_For_His
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByUserCode" resultMap="BaseResultMap" parameterType="java.lang.string" >
     select 
     <include refid="Base_Column_List" />
     from cysuser
-    where usercode = #{usercode,jdbcType=INTEGER}
+    where user_code = #{userCode,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByUserCode" parameterType="java.lang.string" >
     delete from cysuser
-    where usercode = #{usercode,jdbcType=INTEGER}
+    where user_code = #{userCode,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="cn.com.cys.schema.CysUser" >
-    insert into cysuser (usercode, username, password
+    insert into cysuser (id, user_code, user_name, 
+      password, passwdExpireDate, passwdSetDate, 
+      Insert_Time_For_His, Operate_Time_For_His
       )
-    values (#{usercode,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    values (#{id,jdbcType=DECIMAL}, #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{passwdexpiredate,jdbcType=DATE}, #{passwdsetdate,jdbcType=DATE}, 
+      #{insertTimeForHis,jdbcType=TIMESTAMP}, #{operateTimeForHis,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.com.cys.schema.CysUser" >
     insert into cysuser
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="usercode != null" >
-        usercode,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="username != null" >
-        username,
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="userName != null" >
+        user_name,
       </if>
       <if test="password != null" >
         password,
       </if>
+      <if test="passwdexpiredate != null" >
+        passwdExpireDate,
+      </if>
+      <if test="passwdsetdate != null" >
+        passwdSetDate,
+      </if>
+      <if test="insertTimeForHis != null" >
+        Insert_Time_For_His,
+      </if>
+      <if test="operateTimeForHis != null" >
+        Operate_Time_For_His,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="usercode != null" >
-        #{usercode,jdbcType=INTEGER},
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwdexpiredate != null" >
+        #{passwdexpiredate,jdbcType=DATE},
+      </if>
+      <if test="passwdsetdate != null" >
+        #{passwdsetdate,jdbcType=DATE},
+      </if>
+      <if test="insertTimeForHis != null" >
+        #{insertTimeForHis,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTimeForHis != null" >
+        #{operateTimeForHis,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.com.cys.schema.CysUser" >
     update cysuser
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="passwdexpiredate != null" >
+        passwdExpireDate = #{passwdexpiredate,jdbcType=DATE},
+      </if>
+      <if test="passwdsetdate != null" >
+        passwdSetDate = #{passwdsetdate,jdbcType=DATE},
+      </if>
+      <if test="insertTimeForHis != null" >
+        Insert_Time_For_His = #{insertTimeForHis,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTimeForHis != null" >
+        Operate_Time_For_His = #{operateTimeForHis,jdbcType=TIMESTAMP},
+      </if>
     </set>
-    where usercode = #{usercode,jdbcType=INTEGER}
+    where id = #{id,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.com.cys.schema.CysUser" >
+  <update id="updateByUserCode" parameterType="cn.com.cys.schema.CysUser" >
     update cysuser
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
-    where usercode = #{usercode,jdbcType=INTEGER}
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      passwdExpireDate = #{passwdexpiredate,jdbcType=DATE},
+      passwdSetDate = #{passwdsetdate,jdbcType=DATE},
+      Insert_Time_For_His = #{insertTimeForHis,jdbcType=TIMESTAMP},
+      Operate_Time_For_His = #{operateTimeForHis,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=DECIMAL}
   </update>
 </mapper>
